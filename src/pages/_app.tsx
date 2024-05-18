@@ -8,10 +8,10 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
-
-import theme from '@tech/theme';
 import createEmotionCache from '@tech/theme/createEmotionCache';
 import { SnackbarProvider } from '@tech/components/snackbar/context';
+import { useThemeStore } from '@tech/context';
+import { darkTheme, lightTheme } from '@tech/theme';
 
 const MuiPickersUtilsProvider = dynamic(() =>
   import('@tech/providers/muiPickersUltils.provider').then(
@@ -30,15 +30,11 @@ export default function MyApp(props: MyAppProps) {
 
   const getLayout = Component.getLayout || ((page) => page);
 
+  const { themeMode }: { themeMode: string } = useThemeStore();
+  const theme = themeMode === 'light' ? darkTheme : lightTheme;
+
   return (
     <CacheProvider value={emotionCache}>
-      <Head>
-        <meta
-          name="viewport"
-          content="initial-scale=1, width=device-width"
-        />
-      </Head>
-
       <ThemeProvider theme={theme}>
         <MuiPickersUtilsProvider>
           <CssBaseline />

@@ -9,7 +9,7 @@ import Document, {
 } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import { AppType } from 'next/app';
-import theme, { fontTheme } from '@tech/theme';
+import { fontTheme, lightTheme } from '@tech/theme';
 import createEmotionCache from '@tech/theme/createEmotionCache';
 import { MyAppProps } from './_app';
 
@@ -21,7 +21,7 @@ export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   return (
     <Html lang="pt-BR" className={fontTheme.className}>
       <Head>
-        <meta name="theme-color" content={theme.palette.primary.main} />
+        <meta name="theme-color" content={lightTheme.palette.primary.main} />
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="emotion-insertion-point" content="" />
         {emotionStyleTags}
