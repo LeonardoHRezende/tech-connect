@@ -1,21 +1,17 @@
 import { Navbar } from "@tech/components/navbar";
-import Container from "@mui/material/Container";
 import { useThemeStore } from "@tech/context";
+import { LayoutContainer } from "./container";
 
-interface AppLayoutProps {
-  children: React.ReactNode;
-}
-
-export const AppLayout = ({ children }: AppLayoutProps) => {
+export const AppLayout = ({ children }: any) => {
 
   const { themeMode }: { themeMode: string } = useThemeStore();
 
   return (
-    <div style={{ backgroundColor: themeMode === 'light' ? '#f6f6f6' : '#0f1214', height: '100vh' }}>
+    <div style={{ backgroundColor: themeMode === 'light' ? '#f6f6f6' : '#0f1214'}}>
       <Navbar theme={themeMode} />
-      <Container>
+      <LayoutContainer>
         {children}
-      </Container>
+      </LayoutContainer>
     </div>
   )
 }

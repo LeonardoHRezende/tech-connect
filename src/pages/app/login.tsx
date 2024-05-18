@@ -1,12 +1,18 @@
-import Typography from "@mui/material/Typography"
+import Box from "@mui/material/Box"
 import { AppLayout } from "@tech/layouts/app-layout"
+import { LoginForm } from "@tech/modules/login/components/login-form";
 
 const Login = () => {
   return (
     <AppLayout>
-      <Typography variant="h1" align="center">
-        Login
-      </Typography>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
+        <LoginForm />
+      </Box>
     </AppLayout>
   )
 }
