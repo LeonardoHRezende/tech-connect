@@ -122,27 +122,36 @@ export const lightTheme = createTheme(
           },
         },
       },
-      MuiTypography:{
-        styleOverrides:{
-          root:{
+      MuiTypography: {
+        styleOverrides: {
+          root: {
             color: '#EEFFF6',
           }
         }
       },
-      MuiInputBase:{
-        styleOverrides:{
-          root:{
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
             color: '#0f1214',
             backgroundColor: '#fff',
             border: '1px solid #2D3D4310',
           }
         }
       },
-      MuiCard:{
-        styleOverrides:{
-          root:{
+      MuiCard: {
+        styleOverrides: {
+          root: {
             backgroundColor: '#FFFFFF',
             border: '1px solid #2D3D4310',
+            '& .MuiTypography-root': {
+              color: '#0f1214',
+            },
+          }
+        }
+      },
+      MuiButtonBase:{
+        styleOverrides:{
+          root:{
             color: '#0f1214',
           }
         }
@@ -265,27 +274,34 @@ export const darkTheme = createTheme(
           },
         },
       },
-      MuiTypography:{
-        styleOverrides:{
-          root:{
+      MuiTypography: {
+        styleOverrides: {
+          root: {
             color: '#0f1214'
           }
         }
       },
-      MuiInputBase:{
-        styleOverrides:{
-          root:{
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
             color: '#0f1214',
             backgroundColor: '#fff',
             border: '1px solid #2D3D43',
           }
         }
       },
-      MuiCard:{
-        styleOverrides:{
-          root:{
+      MuiCard: {
+        styleOverrides: {
+          root: {
             backgroundColor: '#FFFFFF',
             border: '1px solid #2D3D43',
+          }
+        }
+      },
+      MuiSvgIcon: {
+        styleOverrides: {
+          root: {
+            color: '#0f1214 !important' ,
           }
         }
       }

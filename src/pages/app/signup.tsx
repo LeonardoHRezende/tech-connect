@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box"
 import { AppLayout } from "@tech/layouts/app-layout"
-import { LoginForm } from "@tech/modules/login/components/login-form";
+import { SignUpForm } from "@tech/modules/login/components/signup-form";
 
-const Login = () => {
+const SignUp = () => {
   return (
     <AppLayout>
       <Box
@@ -11,10 +11,10 @@ const Login = () => {
         alignItems="center"
         height="90vh"
       >
-        <LoginForm />
+        <SignUpForm />
       </Box>
     </AppLayout>
   )
 }
 
-export default Login;
+export default SignUp;

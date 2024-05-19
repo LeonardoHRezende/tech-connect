@@ -4,13 +4,12 @@ import Image from "next/image"
 import { Card } from "@tech/components/card"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-import { InputText } from "@tech/components/input"
+import { InputText, Select } from "@tech/components/input"
 import Button from "@tech/components/button"
 import { Divider } from "@mui/material"
 import { FcGoogle } from "react-icons/fc"
 
-
-export const LoginForm = () => {
+export const SignUpForm = () => {
   return (
     <Stack gap={2}>
       <Card
@@ -27,24 +26,34 @@ export const LoginForm = () => {
               width={50}
               height={50}
             />
-            <Typography variant="body2">Acesse com sua conta, ou realize seu cadastro agora mesmo</Typography>
           </Stack>
           <form>
             <Stack gap={2}>
+              <Select
+                label="O que você procura?"
+                placeholder='Selecione uma opção'
+                options={[
+                  { label: 'Estou procurando novas oportunidades', value: 'common' },
+                  { label: 'Quero encontrar novos talentos', value: 'recruiter' },
+                  { label: 'Quero cadastrar minha empresa', value: 'company' }
+                ]}
+              />
               <InputText
                 label="E-mail"
                 placeholder="Digite seu e-mail"
               />
-              <InputText
-                placeholder="Digite sua senha"
-                label="Senha"
-                type="password"
-              />
-
+              <Stack>
+                <InputText
+                  placeholder="Digite sua senha"
+                  label="Senha"
+                  type="password"
+                />
+                <Typography variant="caption" sx={{opacity: 0.5}}>*A senha deve conter no mínimo 8 caracteres, incluindo letras, números e caracteres especiais.</Typography>
+              </Stack>
               <Button
                 variant="contained"
               >
-                Entrar
+                Cadastrar agora
               </Button>
               <Divider variant="middle" sx={(theme) => ({ borderColor: '#0f121409' })}>
                 <Typography>
@@ -62,7 +71,7 @@ export const LoginForm = () => {
             </Stack>
           </form>
         </Stack>
-      </Card>
+      </Card >
     </Stack>
   )
 }

@@ -4,10 +4,9 @@ import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 
-import { Select } from '.';
-import { SelectProps } from './interface';
+import { ISelectProps, Select } from '.';
 
-type SelectHookFormProps = SelectProps & {
+type SelectHookFormProps = ISelectProps & {
   name: string;
 };
 
@@ -24,22 +23,20 @@ export const SelectHookForm = memo<SelectHookFormProps>(function InputHookForm({
       name={name}
       render={({ field: { onChange, value }, fieldState }) => (
         <>
-          {inputProps?.props?.label && (
-            <InputLabel htmlFor={name}>{inputProps?.props?.label}</InputLabel>
+          {inputProps?.label && (
+            <InputLabel htmlFor={name}>{inputProps?.label}</InputLabel>
           )}
 
           <FormControl
             id={name}
-            fullWidth={inputProps?.props?.fullWidth}
+            fullWidth={inputProps?.fullWidth}
             error={!!fieldState.error}
           >
             <Select
-              props={{
-                onChange: onChange,
-                selected: value,
-                value: value,
-                error: !!fieldState.error,
-              }}
+              onChange={onChange}
+              selected={value}
+              value={value}
+              error={!!fieldState.error}
               {...inputProps}
             />
             {fieldState?.error?.message && (
