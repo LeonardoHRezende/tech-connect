@@ -1,15 +1,22 @@
 import Image from "next/image"
+import Link from "next/link"
 
 
 import { Card } from "@tech/components/card"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-import { InputText, Select } from "@tech/components/input"
+import { InputTextHookForm, SelectHookForm } from "@tech/components/input"
 import Button from "@tech/components/button"
 import { Divider } from "@mui/material"
 import { FcGoogle } from "react-icons/fc"
+import { APP_ROUTES } from "@tech/constants/routes"
+import { useSignUp } from "./hook"
+import { FormProvider } from "react-hook-form"
 
 export const SignUpForm = () => {
+
+  const { formMethods, googleSignIn, onSubmit } = useSignUp();
+
   return (
     <Stack gap={2}>
       <Card
@@ -27,51 +34,61 @@ export const SignUpForm = () => {
               height={50}
             />
           </Stack>
-          <form>
-            <Stack gap={2}>
-              <Select
-                label="O que você procura?"
-                placeholder='Selecione uma opção'
-                options={[
-                  { label: 'Estou procurando novas oportunidades', value: 'common' },
-                  { label: 'Quero encontrar novos talentos', value: 'recruiter' },
-                  { label: 'Quero cadastrar minha empresa', value: 'company' }
-                ]}
-              />
-              <InputText
-                label="E-mail"
-                placeholder="Digite seu e-mail"
-              />
-              <Stack>
-                <InputText
-                  placeholder="Digite sua senha"
-                  label="Senha"
-                  type="password"
+          <FormProvider {...formMethods}>
+            <form onSubmit={formMethods.handleSubmit((data) => onSubmit(data))}>
+              <Stack gap={2}>
+                <SelectHookForm
+                  name="type"
+                  label="O que você procura?"
+                  placeholder='Selecione uma opção'
+                  options={[
+                    { label: 'Estou procurando novas oportunidades', value: 'COMMON' },
+                    { label: 'Quero encontrar novos talentos', value: 'RECRUITER' },
+                    { label: 'Quero cadastrar minha empresa', value: 'COMPANY' }
+                  ]}
                 />
-                <Typography variant="caption" sx={{opacity: 0.5}}>*A senha deve conter no mínimo 8 caracteres, incluindo letras, números e caracteres especiais.</Typography>
+                <InputTextHookForm
+                  name="email"
+                  label="E-mail"
+                  placeholder="Digite seu e-mail"
+                />
+                <Stack>
+                  <InputTextHookForm
+                    name="password"
+                    placeholder="Digite sua senha"
+                    label="Senha"
+                    type="password"
+                  />
+                  <Typography variant="caption" sx={{ opacity: 0.5 }}>*A senha deve conter no mínimo 8 caracteres, incluindo letras, números e caracteres especiais.</Typography>
+                </Stack>
+                <Button
+                  type="submit"
+                  variant="contained"
+                >
+                  Cadastrar agora
+                </Button>
+                <Divider variant="middle" sx={(theme) => ({ borderColor: '#0f121409' })}>
+                  <Typography>
+                    ou
+                  </Typography>
+                </Divider>
+                <Button
+                  onClick={googleSignIn}
+                  variant="outlined"
+                  endIcon={
+                    <FcGoogle />
+                  }
+                >
+                  Continue com o Google
+                </Button>
               </Stack>
-              <Button
-                variant="contained"
-              >
-                Cadastrar agora
-              </Button>
-              <Divider variant="middle" sx={(theme) => ({ borderColor: '#0f121409' })}>
-                <Typography>
-                  ou
-                </Typography>
-              </Divider>
-              <Button
-                variant="outlined"
-                endIcon={
-                  <FcGoogle />
-                }
-              >
-                Continue com o Google
-              </Button>
-            </Stack>
-          </form>
+            </form>
+          </FormProvider>
         </Stack>
       </Card >
+      <Typography variant="body2" textAlign="center">
+        Já tem uma conta? <Link style={{ fontWeight: 700, textDecoration: 'none' }} href={APP_ROUTES.LOGIN}>Faça o login!</Link>
+      </Typography>
     </Stack>
   )
 }

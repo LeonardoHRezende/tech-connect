@@ -23,10 +23,6 @@ export const SelectHookForm = memo<SelectHookFormProps>(function InputHookForm({
       name={name}
       render={({ field: { onChange, value }, fieldState }) => (
         <>
-          {inputProps?.label && (
-            <InputLabel htmlFor={name}>{inputProps?.label}</InputLabel>
-          )}
-
           <FormControl
             id={name}
             fullWidth={inputProps?.fullWidth}

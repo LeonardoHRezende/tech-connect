@@ -1,6 +1,6 @@
 
 import { firebaseAuth } from '@tech/lib/firebase/firebase-cliente';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -19,10 +19,20 @@ export const authOptions = (
       credentials: {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
+        isSignup: { label: 'Sign up', type: 'hidden' },
       },
       authorize: async (credentials) => {
         try {
-          const userCredential = await signInWithEmailAndPassword(firebaseAuth, credentials?.email, credentials?.password);
+          const { email, password, isSignup } = credentials || {};
+
+          let userCredential;
+
+          if (isSignup) {
+            userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password);
+          } else {
+            userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password);
+          }
+
           const user = userCredential.user;
 
           if (user) {
@@ -33,14 +43,14 @@ export const authOptions = (
             };
           }
         } catch (error) {
-          console.error('Firebase login error:', error);
+          console.error('Firebase auth error:', error);
           return null;
         }
       },
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
     }),
   ],
   callbacks: {

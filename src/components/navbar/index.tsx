@@ -6,9 +6,14 @@ import { LogoDark } from '@tech/components/logo/dark';
 import { LogoLight } from '@tech/components/logo/light';
 
 import { ChangeThemeButton } from './components/change-theme-button';
+import { UserProfileNavBar } from './components/user-profile';
+
+import { signOut, useSession } from 'next-auth/react';
 
 
 export const Navbar = ({ theme }: { theme: string }) => {
+  const { data } = useSession();
+
   return (
     <Appbar
       position="static"
@@ -23,7 +28,22 @@ export const Navbar = ({ theme }: { theme: string }) => {
           {
             theme === 'dark' ? <LogoLight /> : <LogoDark />
           }
-          <ChangeThemeButton />
+
+          <Stack direction="row" alignItems="center" gap={2}>
+            {
+              data && (
+                <UserProfileNavBar
+                  user={{
+                    firstName: data?.user?.name?.split(' ')?.[0],
+                    image: data?.user?.image
+                  }}
+                  signOut={signOut}
+                />
+              )
+            }
+            <ChangeThemeButton />
+          </Stack>
+
         </Stack>
       </Container>
     </Appbar>

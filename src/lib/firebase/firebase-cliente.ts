@@ -1,6 +1,5 @@
-import firebase from 'firebase/app';
-import { getAuth } from "firebase/auth";
-import 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -11,6 +10,7 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
 };
 
-export const firebaseClient = firebase.initializeApp(firebaseConfig);
-export const firebaseAuth = getAuth(firebaseClient);
+const firebaseClient = firebase.initializeApp(firebaseConfig);
+const firebaseAuth = firebaseClient.auth();
 
+export { firebaseClient, firebaseAuth };

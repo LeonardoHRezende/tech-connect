@@ -7,7 +7,7 @@ export const AppLayout = ({ children }: any) => {
   const { themeMode }: { themeMode: string } = useThemeStore();
 
   return (
-    <div style={{ backgroundColor: themeMode === 'light' ? '#f6f6f6' : '#0f1214'}}>
+    <div>
       <Navbar theme={themeMode} />
       <LayoutContainer>
         {children}
