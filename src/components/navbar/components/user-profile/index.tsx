@@ -8,6 +8,7 @@ import Popover from '@mui/material/Popover';
 import ListItem from '@mui/material/ListItem';
 
 import { GoSignOut } from 'react-icons/go';
+import { useTheme } from '@mui/material';
 
 
 export const UserProfileNavBar = memo<UserProfileNavBarProps>(function UserProfileNavBar({
@@ -15,6 +16,7 @@ export const UserProfileNavBar = memo<UserProfileNavBarProps>(function UserProfi
   signOut
 }) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const theme = useTheme();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -30,8 +32,7 @@ export const UserProfileNavBar = memo<UserProfileNavBarProps>(function UserProfi
     if (!name) return '';
     return name.length > 10 ? name.slice(0, 10) + '...' : name;
   };
-
-
+  
   return (
     <>
       <Stack
@@ -73,13 +74,28 @@ export const UserProfileNavBar = memo<UserProfileNavBarProps>(function UserProfi
           vertical: 'bottom',
           horizontal: 'left',
         }}
+        sx={{
+          '& .MuiPaper-root': {
+            minWidth: 200
+          }
+        }}
       >
-        <ListItem onClick={signOut}>
-          <Stack direction="row" alignItems="center" justifyContent="space-between" width="100px">
+        <ListItem
+          onClick={signOut}
+          sx={(theme) => (
+            {
+              '&:hover': {
+                cursor: 'pointer',
+                bgcolor: theme.palette.action.hover
+              }
+            }
+          )}
+        >
+          <Stack direction="row" alignItems="center" justifyContent="space-between" width="100%">
             <Typography>
               Sair
             </Typography>
-            <GoSignOut />
+            <GoSignOut color={theme.palette.primary.contrastText}/>
           </Stack>
         </ListItem>
       </Popover>

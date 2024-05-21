@@ -11,7 +11,7 @@ import { UserProfileNavBar } from './components/user-profile';
 import { signOut, useSession } from 'next-auth/react';
 
 
-export const Navbar = ({ theme }: { theme: string }) => {
+export const Navbar = ({ theme, changeTheme }: { theme: string, changeTheme: () => void }) => {
   const { data } = useSession();
 
   return (
@@ -41,7 +41,7 @@ export const Navbar = ({ theme }: { theme: string }) => {
                 />
               )
             }
-            <ChangeThemeButton />
+            <ChangeThemeButton theme={theme} changeTheme={changeTheme} />
           </Stack>
 
         </Stack>

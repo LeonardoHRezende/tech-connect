@@ -1,14 +1,16 @@
 import { Navbar } from "@tech/components/navbar";
-import { useThemeStore } from "@tech/context";
+
 import { LayoutContainer } from "./container";
+import { useTheme } from "@tech/hooks/use-theme";
+
 
 export const AppLayout = ({ children }: any) => {
 
-  const { themeMode }: { themeMode: string } = useThemeStore();
+  const { themeMode, toggleTheme} = useTheme();
 
   return (
     <div>
-      <Navbar theme={themeMode} />
+      <Navbar theme={themeMode} changeTheme={toggleTheme} />
       <LayoutContainer>
         {children}
       </LayoutContainer>

@@ -14,10 +14,10 @@ export const lightTheme = createTheme(
     palette: {
       mode: 'light',
       primary: {
-        main: '#0f1214',
+        main: '#eefff6',
         light: '#eefff6',
         dark: '#0f1214',
-        contrastText: '#EEFFF6',
+        contrastText: '#0f1214',
       },
       secondary: {
         main: '#2D3D43',
@@ -125,7 +125,7 @@ export const lightTheme = createTheme(
       MuiTypography: {
         styleOverrides: {
           root: {
-            color: '#EEFFF6',
+            color: '#0f1214',
           }
         }
       },
@@ -169,37 +169,37 @@ export const darkTheme = createTheme(
         main: '#121212',
         light: '#333333',
         dark: '#000000',
-        contrastText: '#FFFFFF',
+        contrastText: '#EEFFF6',
       },
       secondary: {
         main: '#1E1E1E',
         light: '#333333',
         dark: '#000000',
-        contrastText: '#FFFFFF',
+        contrastText: '#EEFFF6',
       },
       error: {
         dark: '#DE2E2E',
         main: '#F26344',
         light: '#FAE1DD',
-        contrastText: '#FFFFFF',
+        contrastText: '#EEFFF6',
       },
       success: {
         main: '#14AE5C',
         light: '#DCF3E7',
         dark: '#0b703a',
-        contrastText: '#FFFFFF',
+        contrastText: '#EEFFF6',
       },
       warning: {
         dark: '#DE9E2E',
         main: '#EFAD33',
         light: '#FAF5DD',
-        contrastText: '#FFFFFF',
+        contrastText: '#EEFFF6',
       },
       info: {
         dark: '#0A1B23',
         main: '#0057FF',
         light: '#DDF1FA',
-        contrastText: '#FFFFFF',
+        contrastText: '#EEFFF6',
       },
       text: {
         primary: '#FFFFFF',
@@ -277,7 +277,7 @@ export const darkTheme = createTheme(
       MuiTypography: {
         styleOverrides: {
           root: {
-            color: '#0f1214'
+            color: '#EEFFF6'
           }
         }
       },
@@ -295,6 +295,9 @@ export const darkTheme = createTheme(
           root: {
             backgroundColor: '#FFFFFF',
             border: '1px solid #2D3D43',
+            '& .MuiTypography-root': {
+              color: '#0f1214',
+            },
           }
         }
       },

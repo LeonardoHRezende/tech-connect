@@ -9,7 +9,7 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import createEmotionCache from '@tech/theme/createEmotionCache';
 import { SnackbarProvider } from '@tech/components/snackbar/context';
-import { useThemeStore } from '@tech/context';
+import { useTheme } from '@tech/hooks/use-theme';
 import { darkTheme, lightTheme } from '@tech/theme';
 
 
@@ -30,8 +30,8 @@ export default function MyApp(props: MyAppProps) {
 
   const getLayout = Component.getLayout || ((page) => page);
 
-  const { themeMode }: { themeMode: string } = useThemeStore();
-  const theme = themeMode === 'light' ? darkTheme : lightTheme;
+  const { themeMode } = useTheme();
+  const theme = themeMode === 'light' ? lightTheme : darkTheme;
 
   return (
     <SessionProvider session={session}>

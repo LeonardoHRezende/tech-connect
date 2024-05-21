@@ -1,27 +1,25 @@
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
-import { useThemeStore } from '@tech/context';
 import { MdOutlineWbSunny } from 'react-icons/md';
 import { RiMoonClearLine } from 'react-icons/ri';
 
-export const ChangeThemeButton = () => {
+interface ChangeThemeButtonProps {
+  theme: string;
+  changeTheme: () => void;
 
-  const { themeMode, toggleTheme }: any = useThemeStore();
+}
 
-  const handleToggleTheme = () => {
-    const newTheme = themeMode === 'light' ? 'dark' : 'light';
-    toggleTheme(newTheme);
-  }
+export const ChangeThemeButton = ({ theme, changeTheme }: ChangeThemeButtonProps) => {
 
   return (
     <Tooltip title="Alterar tema da página">
       <span>
         <IconButton
-          onClick={handleToggleTheme}
+          onClick={changeTheme}
         >
           {
-            themeMode === 'light' ? (
+            theme === 'light' ? (
               <MdOutlineWbSunny size={20} color="#0f1214" />
             ) : (
               <RiMoonClearLine size={20} color="#eefff6" />
