@@ -39,7 +39,7 @@ export const SignUpForm = () => {
               <Stack gap={2}>
                 <SelectHookForm
                   name="type"
-                  label="O que você procura?"
+                  label="O que você procura?*"
                   placeholder='Selecione uma opção'
                   options={[
                     { label: 'Estou procurando novas oportunidades', value: 'COMMON' },
@@ -49,14 +49,14 @@ export const SignUpForm = () => {
                 />
                 <InputTextHookForm
                   name="email"
-                  label="E-mail"
+                  label="E-mail*"
                   placeholder="Digite seu e-mail"
                 />
                 <Stack>
                   <InputTextHookForm
                     name="password"
                     placeholder="Digite sua senha"
-                    label="Senha"
+                    label="Senha*"
                     type="password"
                   />
                   <Typography variant="caption" sx={{ opacity: 0.5 }}>*A senha deve conter no mínimo 8 caracteres, incluindo letras, números e caracteres especiais.</Typography>

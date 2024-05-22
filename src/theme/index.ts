@@ -14,10 +14,10 @@ export const lightTheme = createTheme(
     palette: {
       mode: 'light',
       primary: {
-        main: '#eefff6',
+        main: '#0f1214',
         light: '#eefff6',
         dark: '#0f1214',
-        contrastText: '#0f1214',
+        contrastText: '#eefff6',
       },
       secondary: {
         main: '#2D3D43',
@@ -145,18 +145,19 @@ export const lightTheme = createTheme(
             border: '1px solid #2D3D4310',
             '& .MuiTypography-root': {
               color: '#0f1214',
-            },
+            }
           }
         }
       },
-      MuiButtonBase:{
-        styleOverrides:{
-          root:{
-            color: '#0f1214',
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#333333'
           }
         }
       }
     },
+
   },
   ptBR
 );
@@ -305,6 +306,13 @@ export const darkTheme = createTheme(
         styleOverrides: {
           root: {
             color: '#0f1214 !important' ,
+          }
+        }
+      },
+      MuiAlert:{
+        styleOverrides: {
+          root: {
+            color: '#0f1214',
           }
         }
       }

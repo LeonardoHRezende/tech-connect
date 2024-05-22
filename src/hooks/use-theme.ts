@@ -1,23 +1,9 @@
 import create from 'zustand';
 import { setCookie, parseCookies } from 'nookies';
 import { useEffect } from 'react';
+import { ThemeMode, useThemeStore } from '@tech/context/theme';
 
-type ThemeMode = 'light' | 'dark';
 
-interface ThemeStore {
-  themeMode: ThemeMode;
-  toggleTheme: () => void;
-}
-
-const useThemeStore = create<ThemeStore>((set) => ({
-  themeMode: 'light',
-  toggleTheme: () =>
-    set((state) => {
-      const newTheme = state.themeMode === 'light' ? 'dark' : 'light';
-      setCookie(null, 'themeMode', newTheme, { path: '/' });
-      return { themeMode: newTheme };
-    }),
-}));
 
 export const useTheme = () => {
   const { themeMode, toggleTheme } = useThemeStore();
