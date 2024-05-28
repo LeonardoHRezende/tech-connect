@@ -9,10 +9,11 @@ import { ChangeThemeButton } from './components/change-theme-button';
 import { UserProfileNavBar } from './components/user-profile';
 
 import { signOut, useSession } from 'next-auth/react';
+import { useCustomSession } from '@tech/hooks/use-session';
 
 
 export const Navbar = ({ theme, changeTheme }: { theme: string, changeTheme: () => void }) => {
-  const { data } = useSession();
+  const { session } = useCustomSession();
 
   return (
     <Appbar
@@ -31,11 +32,11 @@ export const Navbar = ({ theme, changeTheme }: { theme: string, changeTheme: () 
 
           <Stack direction="row" alignItems="center" gap={2}>
             {
-              data && (
+              session && (
                 <UserProfileNavBar
                   user={{
-                    firstName: data?.user?.name?.split(' ')?.[0],
-                    image: data?.user?.image
+                    firstName: session?.user?.name?.split(' ')?.[0],
+                    image: session?.user?.image
                   }}
                   signOut={signOut}
                 />

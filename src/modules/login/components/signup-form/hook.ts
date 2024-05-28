@@ -3,9 +3,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { signIn } from "next-auth/react";
 import { SignUpSchemaType, signupSchema } from "./schema";
 import { useSnackbar } from "@tech/components/snackbar";
+import { useCustomSession } from "@tech/hooks/use-session";
+import { axiosApiInstance } from "@tech/lib/axios";
 
 export const useSignUp = () => {
-  const {closeSnackbar, openSnackbar} = useSnackbar();
+  const { openSnackbar } = useSnackbar();
+  const { session }  = useCustomSession();
 
   const methods = useForm({
     resolver: zodResolver(signupSchema)
@@ -13,20 +16,31 @@ export const useSignUp = () => {
 
 
   const onSubmit = async (data: SignUpSchemaType) => {
-    const res = await signIn('credentials', {
+    await signIn('credentials', {
       email: data.email,
       password: data.password,
       isSignup: true,
-      callbackUrl: '/app'
+      redirect: false
     })
 
-    console.log(res)
+    console.log(session)
+
+    // try {
+    //   await axiosApiInstance.post('/user', {
+    //     email: data.email,
+    //     type: data.type,
+    //     firebaseId: session?.user?.id
+    //   })
+    // }
+    // catch (err) {
+    //   console.log(err)
+    // }
   }
 
   const googleSignIn = async () => {
     const type = methods.watch('type');
 
-    if(!type) {
+    if (!type) {
       openSnackbar({
         message: 'Selecione o tipo de cadastro',
         type: 'error'
@@ -34,10 +48,27 @@ export const useSignUp = () => {
       return;
     }
 
-    const res = await signIn('google', { callbackUrl: '/app' })
+    const result = await signIn('google', { redirect: false });
+  
+    if (result?.error) {
+      console.error('Sign-in error:', result.error);
+    } else {
+      // Handle successful sign-in here
+      console.log('Sign-in successful', result);
+    }
 
-    console.log(res)
 
+
+    // try {
+    //   await axiosApiInstance.post('/user', {
+    //     email: session?.user?.email,
+    //     type: type,
+    //     firebaseId: session?.user?.id
+    //   })
+    // }
+    // catch (err) {
+    //   console.log(err)
+    // }
   }
 
   return {

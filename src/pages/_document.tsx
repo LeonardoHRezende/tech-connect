@@ -22,7 +22,8 @@ export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
     <Html lang="pt-BR" className={fontTheme.className}>
       <Head>
         <meta name="theme-color" content={lightTheme.palette.primary.main} />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/icon.ico" />
+        <link rel="apple-touch-icon" href="/icon.ico" />
         <meta name="emotion-insertion-point" content="" />
         {emotionStyleTags}
       </Head>

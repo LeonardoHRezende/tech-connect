@@ -46,11 +46,11 @@ export const authOptions = (
           console.error('Firebase auth error:', error);
           return null;
         }
-      },
+      }
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   callbacks: {
